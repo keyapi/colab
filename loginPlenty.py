@@ -1,10 +1,13 @@
 import getpass
 import requests
 import json
+import time
 
 def loginInput():
     print("Please enter your PM login data and press Enter button")
+    time.sleep(0.5)
     username = input("username: ")
+    time.sleep(0.5)
     password = getpass.getpass("password: ")
     return username, password
 
