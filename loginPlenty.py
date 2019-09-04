@@ -14,8 +14,8 @@ def loginPost(sellerUrl, username, password):
     route = "/rest/login"
     paras = f"?username={username}&password={password}"
     loginUrl = sellerUrl + route + paras  
-    re = requests.post(loginUrl)
-    return re
+    r = requests.post(loginUrl)
+    return r
 
 def loginTries(sellerUrl):
     sellerUrl = sellerUrl
@@ -24,13 +24,13 @@ def loginTries(sellerUrl):
     count = 0
     while count < 3:
         count += 1
-        re = loginPost(sellerUrl, username, password)
-        if re.status_code == 200:
+        r = loginPost(sellerUrl, username, password)
+        if r.status_code == 200:
             print ("login successful")
-            login_re_js = re.json()
-            token_type = login_re_js['token_type']
-            access_token = login_re_js['access_token']
-            refresh_token = login_re_js['refresh_token']
+            login_r_js = r.json()
+            token_type = login_r_js['token_type']
+            access_token = login_r_js['access_token']
+            refresh_token = login_r_js['refresh_token']
             head = {'Authorization': token_type + " " + access_token}
             
             return token_type, access_token, refresh_token, head
